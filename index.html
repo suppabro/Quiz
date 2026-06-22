@@ -28,11 +28,13 @@
         }
         .logo-display { 
             width: 100%; 
-            height: 300px; 
+            height: 250px; 
             object-fit: contain; 
             margin-bottom: 20px; 
             transition: 0.3s; 
             border-radius: 8px;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .answer-reveal { 
             font-size: 2.5rem; 
@@ -88,38 +90,38 @@
 </div>
 
 <script>
-    // Replace the placehold.co links with your actual image file names (e.g., "toyota.png") once uploaded to GitHub
+    // Live logos pulled directly from company websites! No downloading required.
     const quizData = [
-        { answer: "BAJAJ", image: "https://placehold.co/400x300/EEEEEE/333333?text=Bajaj" },
-        { answer: "TOYOTA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Toyota" },
-        { answer: "HONDA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Honda" },
-        { answer: "BMW", image: "https://placehold.co/400x300/EEEEEE/333333?text=BMW" },
-        { answer: "MERCEDES-BENZ", image: "https://placehold.co/400x300/EEEEEE/333333?text=Mercedes" },
-        { answer: "AUDI", image: "https://placehold.co/400x300/EEEEEE/333333?text=Audi" },
-        { answer: "YAMAHA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Yamaha" },
-        { answer: "FORD", image: "https://placehold.co/400x300/EEEEEE/333333?text=Ford" },
-        { answer: "SAMSUNG", image: "https://placehold.co/400x300/EEEEEE/333333?text=Samsung" },
-        { answer: "APPLE", image: "https://placehold.co/400x300/EEEEEE/333333?text=Apple" },
-        { answer: "GITHUB", image: "https://placehold.co/400x300/EEEEEE/333333?text=GitHub" },
-        { answer: "WHATSAPP", image: "https://placehold.co/400x300/EEEEEE/333333?text=WhatsApp" },
-        { answer: "DIALOG AXIATA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Dialog" },
-        { answer: "GOOGLE", image: "https://placehold.co/400x300/EEEEEE/333333?text=Google" },
-        { answer: "MICROSOFT", image: "https://placehold.co/400x300/EEEEEE/333333?text=Microsoft" },
-        { answer: "INTEL", image: "https://placehold.co/400x300/EEEEEE/333333?text=Intel" },
-        { answer: "COCA-COLA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Coca-Cola" },
-        { answer: "PEPSI", image: "https://placehold.co/400x300/EEEEEE/333333?text=Pepsi" },
-        { answer: "MCDONALD'S", image: "https://placehold.co/400x300/EEEEEE/333333?text=McDonalds" },
-        { answer: "KFC", image: "https://placehold.co/400x300/EEEEEE/333333?text=KFC" },
-        { answer: "STARBUCKS", image: "https://placehold.co/400x300/EEEEEE/333333?text=Starbucks" },
-        { answer: "NESTLÉ", image: "https://placehold.co/400x300/EEEEEE/333333?text=Nestle" },
-        { answer: "RED BULL", image: "https://placehold.co/400x300/EEEEEE/333333?text=Red+Bull" },
-        { answer: "NIKE", image: "https://placehold.co/400x300/EEEEEE/333333?text=Nike" },
-        { answer: "ADIDAS", image: "https://placehold.co/400x300/EEEEEE/333333?text=Adidas" },
-        { answer: "PUMA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Puma" },
-        { answer: "ROLEX", image: "https://placehold.co/400x300/EEEEEE/333333?text=Rolex" },
-        { answer: "YOUTUBE", image: "https://placehold.co/400x300/EEEEEE/333333?text=YouTube" },
-        { answer: "VISA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Visa" },
-        { answer: "MASTERCARD", image: "https://placehold.co/400x300/EEEEEE/333333?text=Mastercard" }
+        { answer: "BAJAJ", image: "https://logo.clearbit.com/bajajauto.com" },
+        { answer: "TOYOTA", image: "https://logo.clearbit.com/toyota.com" },
+        { answer: "HONDA", image: "https://logo.clearbit.com/honda.com" },
+        { answer: "BMW", image: "https://logo.clearbit.com/bmw.com" },
+        { answer: "MERCEDES-BENZ", image: "https://logo.clearbit.com/mercedes-benz.com" },
+        { answer: "AUDI", image: "https://logo.clearbit.com/audi.com" },
+        { answer: "YAMAHA", image: "https://logo.clearbit.com/yamaha-motor.com" },
+        { answer: "FORD", image: "https://logo.clearbit.com/ford.com" },
+        { answer: "SAMSUNG", image: "https://logo.clearbit.com/samsung.com" },
+        { answer: "APPLE", image: "https://logo.clearbit.com/apple.com" },
+        { answer: "GITHUB", image: "https://logo.clearbit.com/github.com" },
+        { answer: "WHATSAPP", image: "https://logo.clearbit.com/whatsapp.com" },
+        { answer: "DIALOG AXIATA", image: "https://logo.clearbit.com/dialog.lk" },
+        { answer: "GOOGLE", image: "https://logo.clearbit.com/google.com" },
+        { answer: "MICROSOFT", image: "https://logo.clearbit.com/microsoft.com" },
+        { answer: "INTEL", image: "https://logo.clearbit.com/intel.com" },
+        { answer: "COCA-COLA", image: "https://logo.clearbit.com/coca-cola.com" },
+        { answer: "PEPSI", image: "https://logo.clearbit.com/pepsi.com" },
+        { answer: "MCDONALD'S", image: "https://logo.clearbit.com/mcdonalds.com" },
+        { answer: "KFC", image: "https://logo.clearbit.com/kfc.com" },
+        { answer: "STARBUCKS", image: "https://logo.clearbit.com/starbucks.com" },
+        { answer: "NESTLÉ", image: "https://logo.clearbit.com/nestle.com" },
+        { answer: "RED BULL", image: "https://logo.clearbit.com/redbull.com" },
+        { answer: "NIKE", image: "https://logo.clearbit.com/nike.com" },
+        { answer: "ADIDAS", image: "https://logo.clearbit.com/adidas.com" },
+        { answer: "PUMA", image: "https://logo.clearbit.com/puma.com" },
+        { answer: "ROLEX", image: "https://logo.clearbit.com/rolex.com" },
+        { answer: "YOUTUBE", image: "https://logo.clearbit.com/youtube.com" },
+        { answer: "VISA", image: "https://logo.clearbit.com/visa.com" },
+        { answer: "MASTERCARD", image: "https://logo.clearbit.com/mastercard.com" }
     ];
 
     let current = 0;
@@ -149,28 +151,18 @@
         if(isCorrect) {
             score++;
             document.getElementById('score').textContent = score;
-            // Fire a quick burst of confetti for correct answers
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         }
-        
         current++;
-        
         if(current < quizData.length) {
             load();
         } else {
-            // End of the game
             document.getElementById('logo-image').style.display = 'none';
             document.getElementById('answer-text').innerHTML = `Game Over!<br>Final Score: ${score} / 30`;
             document.getElementById('answer-text').style.display = 'block';
-            
             document.getElementById('correct-btn').style.display = 'none';
             document.getElementById('incorrect-btn').style.display = 'none';
             
-            // Grand finale confetti
             var duration = 3000;
             var end = Date.now() + duration;
             (function frame() {
@@ -181,7 +173,7 @@
         }
     }
 
-    // Start the game immediately
+    // Start
     load();
 </script>
 </body>
