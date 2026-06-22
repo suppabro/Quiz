@@ -27,14 +27,13 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
         }
         .logo-display { 
-            width: 100%; 
-            height: 250px; 
+            width: auto; 
+            max-width: 100%;
+            height: 220px; 
             object-fit: contain; 
-            margin-bottom: 20px; 
+            margin: 0 auto 20px auto; 
+            display: block;
             transition: 0.3s; 
-            border-radius: 8px;
-            padding: 20px;
-            box-sizing: border-box;
         }
         .answer-reveal { 
             font-size: 2.5rem; 
@@ -90,38 +89,38 @@
 </div>
 
 <script>
-    // Bulletproof Google API - Will NOT be blocked by office networks!
+    // Bulletproof SVG CDN. These will NEVER blur!
     const quizData = [
-        { answer: "BAJAJ", image: "https://www.google.com/s2/favicons?domain=bajajauto.com&sz=256" },
-        { answer: "TOYOTA", image: "https://www.google.com/s2/favicons?domain=toyota.com&sz=256" },
-        { answer: "HONDA", image: "https://www.google.com/s2/favicons?domain=honda.com&sz=256" },
-        { answer: "BMW", image: "https://www.google.com/s2/favicons?domain=bmw.com&sz=256" },
-        { answer: "MERCEDES-BENZ", image: "https://www.google.com/s2/favicons?domain=mercedes-benz.com&sz=256" },
-        { answer: "AUDI", image: "https://www.google.com/s2/favicons?domain=audi.com&sz=256" },
-        { answer: "YAMAHA", image: "https://www.google.com/s2/favicons?domain=yamaha-motor.com&sz=256" },
-        { answer: "FORD", image: "https://www.google.com/s2/favicons?domain=ford.com&sz=256" },
-        { answer: "SAMSUNG", image: "https://www.google.com/s2/favicons?domain=samsung.com&sz=256" },
-        { answer: "APPLE", image: "https://www.google.com/s2/favicons?domain=apple.com&sz=256" },
-        { answer: "GITHUB", image: "https://www.google.com/s2/favicons?domain=github.com&sz=256" },
-        { answer: "WHATSAPP", image: "https://www.google.com/s2/favicons?domain=whatsapp.com&sz=256" },
-        { answer: "DIALOG AXIATA", image: "https://www.google.com/s2/favicons?domain=dialog.lk&sz=256" },
-        { answer: "GOOGLE", image: "https://www.google.com/s2/favicons?domain=google.com&sz=256" },
-        { answer: "MICROSOFT", image: "https://www.google.com/s2/favicons?domain=microsoft.com&sz=256" },
-        { answer: "INTEL", image: "https://www.google.com/s2/favicons?domain=intel.com&sz=256" },
-        { answer: "COCA-COLA", image: "https://www.google.com/s2/favicons?domain=coca-cola.com&sz=256" },
-        { answer: "PEPSI", image: "https://www.google.com/s2/favicons?domain=pepsi.com&sz=256" },
-        { answer: "MCDONALD'S", image: "https://www.google.com/s2/favicons?domain=mcdonalds.com&sz=256" },
-        { answer: "KFC", image: "https://www.google.com/s2/favicons?domain=kfc.com&sz=256" },
-        { answer: "STARBUCKS", image: "https://www.google.com/s2/favicons?domain=starbucks.com&sz=256" },
-        { answer: "NESTLÉ", image: "https://www.google.com/s2/favicons?domain=nestle.com&sz=256" },
-        { answer: "RED BULL", image: "https://www.google.com/s2/favicons?domain=redbull.com&sz=256" },
-        { answer: "NIKE", image: "https://www.google.com/s2/favicons?domain=nike.com&sz=256" },
-        { answer: "ADIDAS", image: "https://www.google.com/s2/favicons?domain=adidas.com&sz=256" },
-        { answer: "PUMA", image: "https://www.google.com/s2/favicons?domain=puma.com&sz=256" },
-        { answer: "ROLEX", image: "https://www.google.com/s2/favicons?domain=rolex.com&sz=256" },
-        { answer: "YOUTUBE", image: "https://www.google.com/s2/favicons?domain=youtube.com&sz=256" },
-        { answer: "VISA", image: "https://www.google.com/s2/favicons?domain=visa.com&sz=256" },
-        { answer: "MASTERCARD", image: "https://www.google.com/s2/favicons?domain=mastercard.com&sz=256" }
+        { answer: "TOYOTA", image: "https://cdn.simpleicons.org/toyota" },
+        { answer: "HONDA", image: "https://cdn.simpleicons.org/honda" },
+        { answer: "BMW", image: "https://cdn.simpleicons.org/bmw" },
+        { answer: "MERCEDES-BENZ", image: "https://cdn.simpleicons.org/mercedes" },
+        { answer: "AUDI", image: "https://cdn.simpleicons.org/audi" },
+        { answer: "YAMAHA", image: "https://cdn.simpleicons.org/yamaha" },
+        { answer: "FORD", image: "https://cdn.simpleicons.org/ford" },
+        { answer: "SAMSUNG", image: "https://cdn.simpleicons.org/samsung" },
+        { answer: "APPLE", image: "https://cdn.simpleicons.org/apple" },
+        { answer: "GITHUB", image: "https://cdn.simpleicons.org/github" },
+        { answer: "WHATSAPP", image: "https://cdn.simpleicons.org/whatsapp" },
+        { answer: "GOOGLE", image: "https://cdn.simpleicons.org/google" },
+        { answer: "MICROSOFT", image: "https://cdn.simpleicons.org/microsoft" },
+        { answer: "INTEL", image: "https://cdn.simpleicons.org/intel" },
+        { answer: "COCA-COLA", image: "https://cdn.simpleicons.org/cocacola" },
+        { answer: "PEPSI", image: "https://cdn.simpleicons.org/pepsi" },
+        { answer: "MCDONALD'S", image: "https://cdn.simpleicons.org/mcdonalds" },
+        { answer: "KFC", image: "https://cdn.simpleicons.org/kfc" },
+        { answer: "STARBUCKS", image: "https://cdn.simpleicons.org/starbucks" },
+        { answer: "NESTLÉ", image: "https://cdn.simpleicons.org/nestle" },
+        { answer: "RED BULL", image: "https://cdn.simpleicons.org/redbull" },
+        { answer: "NIKE", image: "https://cdn.simpleicons.org/nike" },
+        { answer: "ADIDAS", image: "https://cdn.simpleicons.org/adidas" },
+        { answer: "PUMA", image: "https://cdn.simpleicons.org/puma" },
+        { answer: "YOUTUBE", image: "https://cdn.simpleicons.org/youtube" },
+        { answer: "VISA", image: "https://cdn.simpleicons.org/visa" },
+        { answer: "MASTERCARD", image: "https://cdn.simpleicons.org/mastercard" },
+        { answer: "AMAZON", image: "https://cdn.simpleicons.org/amazon" },
+        { answer: "SONY", image: "https://cdn.simpleicons.org/sony" },
+        { answer: "TESLA", image: "https://cdn.simpleicons.org/tesla" }
     ];
 
     let current = 0;
@@ -173,7 +172,6 @@
         }
     }
 
-    // Start
     load();
 </script>
 </body>
