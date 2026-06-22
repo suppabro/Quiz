@@ -32,6 +32,7 @@
             object-fit: contain; 
             margin-bottom: 20px; 
             transition: 0.3s; 
+            border-radius: 8px;
         }
         .answer-reveal { 
             font-size: 2.5rem; 
@@ -66,7 +67,7 @@
         .info { 
             font-size: 1.2rem; 
             color: #666; 
-            margin-bottom: 10px; 
+            margin-bottom: 20px; 
             font-weight: 600;
         }
     </style>
@@ -76,7 +77,7 @@
 <div class="quiz-container">
     <div class="info">Question <span id="q-num">1</span> / 30 | Team Score: <span id="score">0</span></div>
     
-    <img id="logo-image" class="logo-display" src="">
+    <img id="logo-image" class="logo-display" src="" alt="Quiz Logo">
     <div id="answer-text" class="answer-reveal"></div>
     
     <div class="btn-group">
@@ -87,38 +88,38 @@
 </div>
 
 <script>
-    // All 30 logos are ready here. Just swap the 'image' links with your real logo files!
+    // Replace the placehold.co links with your actual image file names (e.g., "toyota.png") once uploaded to GitHub
     const quizData = [
-        { answer: "BAJAJ", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Bajaj+Logo" },
-        { answer: "TOYOTA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Toyota+Logo" },
-        { answer: "HONDA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Honda+Logo" },
-        { answer: "BMW", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=BMW+Logo" },
-        { answer: "MERCEDES-BENZ", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Mercedes+Logo" },
-        { answer: "AUDI", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Audi+Logo" },
-        { answer: "YAMAHA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Yamaha+Logo" },
-        { answer: "FORD", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Ford+Logo" },
-        { answer: "SAMSUNG", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Samsung+Logo" },
-        { answer: "APPLE", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Apple+Logo" },
-        { answer: "GITHUB", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=GitHub+Logo" },
-        { answer: "WHATSAPP", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=WhatsApp+Logo" },
-        { answer: "DIALOG AXIATA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Dialog+Logo" },
-        { answer: "GOOGLE", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Google+Logo" },
-        { answer: "MICROSOFT", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Microsoft+Logo" },
-        { answer: "INTEL", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Intel+Logo" },
-        { answer: "COCA-COLA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Coca-Cola+Logo" },
-        { answer: "PEPSI", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Pepsi+Logo" },
-        { answer: "MCDONALD'S", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=McDonalds+Logo" },
-        { answer: "KFC", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=KFC+Logo" },
-        { answer: "STARBUCKS", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Starbucks+Logo" },
-        { answer: "NESTLÉ", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Nestle+Logo" },
-        { answer: "RED BULL", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Red+Bull+Logo" },
-        { answer: "NIKE", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Nike+Logo" },
-        { answer: "ADIDAS", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Adidas+Logo" },
-        { answer: "PUMA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Puma+Logo" },
-        { answer: "ROLEX", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Rolex+Logo" },
-        { answer: "YOUTUBE", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=YouTube+Logo" },
-        { answer: "VISA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Visa+Logo" },
-        { answer: "MASTERCARD", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Mastercard+Logo" }
+        { answer: "BAJAJ", image: "https://placehold.co/400x300/EEEEEE/333333?text=Bajaj" },
+        { answer: "TOYOTA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Toyota" },
+        { answer: "HONDA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Honda" },
+        { answer: "BMW", image: "https://placehold.co/400x300/EEEEEE/333333?text=BMW" },
+        { answer: "MERCEDES-BENZ", image: "https://placehold.co/400x300/EEEEEE/333333?text=Mercedes" },
+        { answer: "AUDI", image: "https://placehold.co/400x300/EEEEEE/333333?text=Audi" },
+        { answer: "YAMAHA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Yamaha" },
+        { answer: "FORD", image: "https://placehold.co/400x300/EEEEEE/333333?text=Ford" },
+        { answer: "SAMSUNG", image: "https://placehold.co/400x300/EEEEEE/333333?text=Samsung" },
+        { answer: "APPLE", image: "https://placehold.co/400x300/EEEEEE/333333?text=Apple" },
+        { answer: "GITHUB", image: "https://placehold.co/400x300/EEEEEE/333333?text=GitHub" },
+        { answer: "WHATSAPP", image: "https://placehold.co/400x300/EEEEEE/333333?text=WhatsApp" },
+        { answer: "DIALOG AXIATA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Dialog" },
+        { answer: "GOOGLE", image: "https://placehold.co/400x300/EEEEEE/333333?text=Google" },
+        { answer: "MICROSOFT", image: "https://placehold.co/400x300/EEEEEE/333333?text=Microsoft" },
+        { answer: "INTEL", image: "https://placehold.co/400x300/EEEEEE/333333?text=Intel" },
+        { answer: "COCA-COLA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Coca-Cola" },
+        { answer: "PEPSI", image: "https://placehold.co/400x300/EEEEEE/333333?text=Pepsi" },
+        { answer: "MCDONALD'S", image: "https://placehold.co/400x300/EEEEEE/333333?text=McDonalds" },
+        { answer: "KFC", image: "https://placehold.co/400x300/EEEEEE/333333?text=KFC" },
+        { answer: "STARBUCKS", image: "https://placehold.co/400x300/EEEEEE/333333?text=Starbucks" },
+        { answer: "NESTLÉ", image: "https://placehold.co/400x300/EEEEEE/333333?text=Nestle" },
+        { answer: "RED BULL", image: "https://placehold.co/400x300/EEEEEE/333333?text=Red+Bull" },
+        { answer: "NIKE", image: "https://placehold.co/400x300/EEEEEE/333333?text=Nike" },
+        { answer: "ADIDAS", image: "https://placehold.co/400x300/EEEEEE/333333?text=Adidas" },
+        { answer: "PUMA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Puma" },
+        { answer: "ROLEX", image: "https://placehold.co/400x300/EEEEEE/333333?text=Rolex" },
+        { answer: "YOUTUBE", image: "https://placehold.co/400x300/EEEEEE/333333?text=YouTube" },
+        { answer: "VISA", image: "https://placehold.co/400x300/EEEEEE/333333?text=Visa" },
+        { answer: "MASTERCARD", image: "https://placehold.co/400x300/EEEEEE/333333?text=Mastercard" }
     ];
 
     let current = 0;
@@ -148,7 +149,7 @@
         if(isCorrect) {
             score++;
             document.getElementById('score').textContent = score;
-            // Fire a quick burst of confetti for correct answers!
+            // Fire a quick burst of confetti for correct answers
             confetti({
                 particleCount: 100,
                 spread: 70,
@@ -180,7 +181,7 @@
         }
     }
 
-    // Start the game immediately when the file is opened
+    // Start the game immediately
     load();
 </script>
 </body>
