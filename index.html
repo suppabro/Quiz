@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Logo Quiz - Host Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); 
+            height: 100vh; 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .quiz-container { 
+            background: white; 
+            border-radius: 16px; 
+            padding: 40px; 
+            width: 90%; 
+            max-width: 600px; 
+            text-align: center; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3); 
+        }
+        .logo-display { 
+            width: 100%; 
+            height: 300px; 
+            object-fit: contain; 
+            margin-bottom: 20px; 
+            transition: 0.3s; 
+        }
+        .answer-reveal { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            color: #333; 
+            margin: 20px 0; 
+            display: none; 
+        }
+        .btn-group { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+        button { 
+            border: none; 
+            padding: 15px 30px; 
+            font-size: 1.2rem; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            color: white; 
+            font-weight: 600; 
+            transition: 0.2s; 
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        #reveal-btn { background: #3a7bd5; }
+        #correct-btn { background: #4caf50; display: none; }
+        #incorrect-btn { background: #f44336; display: none; }
+        .info { 
+            font-size: 1.2rem; 
+            color: #666; 
+            margin-bottom: 10px; 
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="info">Question <span id="q-num">1</span> / 30 | Team Score: <span id="score">0</span></div>
+    
+    <img id="logo-image" class="logo-display" src="">
+    <div id="answer-text" class="answer-reveal"></div>
+    
+    <div class="btn-group">
+        <button id="reveal-btn" onclick="reveal()">Reveal Answer</button>
+        <button id="correct-btn" onclick="scorePoint(true)">Correct ✅</button>
+        <button id="incorrect-btn" onclick="scorePoint(false)">Incorrect ❌</button>
+    </div>
+</div>
+
+<script>
+    // All 30 logos are ready here. Just swap the 'image' links with your real logo files!
+    const quizData = [
+        { answer: "BAJAJ", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Bajaj+Logo" },
+        { answer: "TOYOTA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Toyota+Logo" },
+        { answer: "HONDA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Honda+Logo" },
+        { answer: "BMW", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=BMW+Logo" },
+        { answer: "MERCEDES-BENZ", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Mercedes+Logo" },
+        { answer: "AUDI", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Audi+Logo" },
+        { answer: "YAMAHA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Yamaha+Logo" },
+        { answer: "FORD", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Ford+Logo" },
+        { answer: "SAMSUNG", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Samsung+Logo" },
+        { answer: "APPLE", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Apple+Logo" },
+        { answer: "GITHUB", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=GitHub+Logo" },
+        { answer: "WHATSAPP", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=WhatsApp+Logo" },
+        { answer: "DIALOG AXIATA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Dialog+Logo" },
+        { answer: "GOOGLE", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Google+Logo" },
+        { answer: "MICROSOFT", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Microsoft+Logo" },
+        { answer: "INTEL", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Intel+Logo" },
+        { answer: "COCA-COLA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Coca-Cola+Logo" },
+        { answer: "PEPSI", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Pepsi+Logo" },
+        { answer: "MCDONALD'S", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=McDonalds+Logo" },
+        { answer: "KFC", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=KFC+Logo" },
+        { answer: "STARBUCKS", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Starbucks+Logo" },
+        { answer: "NESTLÉ", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Nestle+Logo" },
+        { answer: "RED BULL", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Red+Bull+Logo" },
+        { answer: "NIKE", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Nike+Logo" },
+        { answer: "ADIDAS", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Adidas+Logo" },
+        { answer: "PUMA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Puma+Logo" },
+        { answer: "ROLEX", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Rolex+Logo" },
+        { answer: "YOUTUBE", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=YouTube+Logo" },
+        { answer: "VISA", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Visa+Logo" },
+        { answer: "MASTERCARD", image: "https://via.placeholder.com/400x300/e0e0e0/333?text=Mastercard+Logo" }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function load() {
+        document.getElementById('logo-image').src = quizData[current].image;
+        document.getElementById('answer-text').style.display = 'none';
+        
+        document.getElementById('reveal-btn').style.display = 'inline-block';
+        document.getElementById('correct-btn').style.display = 'none';
+        document.getElementById('incorrect-btn').style.display = 'none';
+        
+        document.getElementById('q-num').textContent = current + 1;
+    }
+
+    function reveal() {
+        document.getElementById('answer-text').textContent = quizData[current].answer;
+        document.getElementById('answer-text').style.display = 'block';
+        
+        document.getElementById('reveal-btn').style.display = 'none';
+        document.getElementById('correct-btn').style.display = 'inline-block';
+        document.getElementById('incorrect-btn').style.display = 'inline-block';
+    }
+
+    function scorePoint(isCorrect) {
+        if(isCorrect) {
+            score++;
+            document.getElementById('score').textContent = score;
+            // Fire a quick burst of confetti for correct answers!
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+        
+        current++;
+        
+        if(current < quizData.length) {
+            load();
+        } else {
+            // End of the game
+            document.getElementById('logo-image').style.display = 'none';
+            document.getElementById('answer-text').innerHTML = `Game Over!<br>Final Score: ${score} / 30`;
+            document.getElementById('answer-text').style.display = 'block';
+            
+            document.getElementById('correct-btn').style.display = 'none';
+            document.getElementById('incorrect-btn').style.display = 'none';
+            
+            // Grand finale confetti
+            var duration = 3000;
+            var end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        }
+    }
+
+    // Start the game immediately when the file is opened
+    load();
+</script>
+</body>
+</html>
